@@ -2,7 +2,7 @@
 # Code example for soroban-kit::oracle
 
 
-This repository contains the code associated with [this article]() published on dev.to. To use it, clone the repository and follow the guidelines provided in the article.
+This repository contains the code associated with [this article](https://dev.to/kyung_jin/oracles-with-soroban-smart-contracts-a-practical-and-flexible-on-chain-framework-f3g) published on dev.to. To use it, clone the repository and follow the guidelines provided in the article.
 
 ## Smart contracts
 
