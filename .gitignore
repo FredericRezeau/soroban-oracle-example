@@ -1,0 +1,16 @@
+/target
+**/test_snapshots
+/crates/*/target/
+**/Cargo.lock
+**/.rustc_info.json
+**/*.rs.bk
+**/.vscode/
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+.directory
+.idea/
+*.code-workspace
+*.iml
+.soroban
