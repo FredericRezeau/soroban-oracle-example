@@ -27,12 +27,12 @@ pub enum DataKey {
 // Implement the Oracle events.
 impl oracle::Events<Bytes, Bytes> for OracleSubscriberContract {
     fn on_request(env: &Env, _topic: &Bytes, envelope: &oracle::Envelope) {
-        is_broker_whitelisted(env, &envelope.broker);
+        require_broker_whitelisted(env, &envelope.broker);
         envelope.subscriber.require_auth();
     }
 
     fn on_sync_receive(env: &Env, topic: &Bytes, envelope: &oracle::Envelope, data: &Bytes) {
-        is_broker_whitelisted(env, &envelope.broker);
+        require_broker_whitelisted(env, &envelope.broker);
 
         // Save the data received synchronously.
         env.storage().instance().set(
@@ -42,7 +42,7 @@ impl oracle::Events<Bytes, Bytes> for OracleSubscriberContract {
     }
 
     fn on_async_receive(env: &Env, topic: &Bytes, envelope: &oracle::Envelope, data: &Bytes) {
-        is_broker_whitelisted(env, &envelope.broker);
+        require_broker_whitelisted(env, &envelope.broker);
         envelope.broker.require_auth(); // Make sure this cross-contract call is from broker.
 
         // Save the data received asynchronously.
@@ -94,10 +94,11 @@ fn require_admin_auth(env: &Env) {
     env.storage()
         .instance()
         .get::<DataKey, Address>(&DataKey::Admin)
-        .unwrap().require_auth();
+        .unwrap()
+        .require_auth();
 }
 
-fn is_broker_whitelisted(env: &Env, broker: &Address) -> bool {
+fn require_broker_whitelisted(env: &Env, broker: &Address) -> bool {
     env.storage()
         .instance()
         .get::<DataKey, bool>(&DataKey::BrokerWhitelist(broker.clone()))

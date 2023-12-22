@@ -81,7 +81,7 @@ impl oracle::Events<Bytes, Bytes> for OracleBrokerContract {
         data: &Bytes,
         publisher: &Address,
     ) -> Vec<oracle::Envelope> {
-        is_publisher_whitelisted(env, publisher);
+        require_publisher_whitelisted(env, publisher);
 
         // Store the data for synchronous requests.
         let storage_instance = env.storage().instance();
@@ -120,7 +120,7 @@ impl OracleBrokerContract {
     }
 }
 
-fn is_publisher_whitelisted(env: &Env, publisher: &Address) -> bool {
+fn require_publisher_whitelisted(env: &Env, publisher: &Address) -> bool {
     env.storage()
         .instance()
         .get::<DataKey, bool>(&DataKey::PublisherWhitelist(publisher.clone()))

@@ -1,7 +1,7 @@
 
 # Oracles with Soroban Smart Contracts: A Practical and Flexible On-Chain Framework
 
-The latest release of [soroban-kit 0.1.8](https://github.com/FredericRezeau/soroban-kit) is now available, and it brings a set of tools designed to streamline both synchronous and asynchronous cross-contract communication, particularly for building more robust oracle systems with [soroban](https://soroban.stellar.org)—exciting topic for my first post on dev.to!
+The latest release of [soroban-kit 0.1.8](https://github.com/FredericRezeau/soroban-kit) is now available, and it brings a set of tools designed to streamline both synchronous and asynchronous cross-contract communication, particularly for building more robust oracle systems with [soroban](https://soroban.stellar.org).
 
 In this article, I'm going to walk you through the new `soroban-kit::oracle` module step-by-step. You will learn how to build a flexible and extensible oracle system leveraging the _pub/sub_ pattern for asynchronous communication between multiple **on-chain** oracle subscribers and brokers.
 
@@ -44,9 +44,7 @@ Let's go!
 
 ## Getting the Code on Github
 
-The code for the example oracle project is located in this [GitHub repo](https://github.com/FredericRezeau/soroban-oracle-example).
-
-It consists of 2 smart contracts:
+The code consists of 2 smart contracts:
 
 - **Oracle Broker Contract** (see [lib.rs](https://github.com/FredericRezeau/soroban-oracle-example/blob/master/crates/broker/src/lib.rs))
   - Handling sync/async topic-based subscriber requests.
